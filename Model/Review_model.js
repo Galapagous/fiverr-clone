@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose"
-import { Schema } from "mongoose"
+const mongoose = require("mongoose")
+const { Schema } = require("mongoose")
 
 const ReviewSchema = new Schema(
   {
@@ -26,4 +26,4 @@ const ReviewSchema = new Schema(
   }
 )
 
-export default mongoose.model("Review", ReviewSchema)
+module.exports = mongoose.model("Review", ReviewSchema)

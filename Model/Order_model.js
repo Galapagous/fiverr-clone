@@ -1,5 +1,5 @@
-import mongoose from "mongoose"
-import { Schema } from "mongoose"
+const mongoose = require("mongoose")
+const { Schema } = require("mongoose")
 
 const OrderSchema = new Schema(
   {

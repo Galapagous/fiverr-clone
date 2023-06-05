@@ -1,0 +1,27 @@
+GET http://localhost:4000/api/user/all HTTP/1.1
+
+###
+
+GET http://localhost:4000/api/review/all HTTP/1.1
+
+###
+
+POST http://localhost:4000/api/review
+content-Type:  application/json
+
+{
+    "GidId":"",
+    "UserId":"",
+    "Desc":"",
+    "Star":""
+}
+
+###
+
+POST http://localhost:4000/api/auth/login
+content-Type:  application/json
+
+{
+    "username":"waqas",
+    "password":"123456",
+}

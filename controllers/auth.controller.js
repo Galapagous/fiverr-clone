@@ -4,8 +4,6 @@ const jwt = require("jsonwebtoken")
 
 // ---------------Login Logic-------------------
 const login = async (req, res, next) => {
-  console.log("hello")
-  // console.log(req)
   try {
     const user = await User.findOne({ username: req.body.username })
     if (!user) {

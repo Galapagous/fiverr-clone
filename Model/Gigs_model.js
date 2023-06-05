@@ -31,6 +31,10 @@ const GigShema = new Schema(
       type: String,
       required: true,
     },
+    cat: {
+      type: String,
+      required: true,
+    },
     delivery: {
       type: Number,
       default: 0,

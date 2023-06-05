@@ -3,9 +3,9 @@ const router = express.Router()
 const {getGig, allGig, deleteGig, createGig} = require("../controllers/gig.controller")
 const verifyToken = require("../middleware/jwt")
 
-router.get("/", verifyToken,allGig)
-router.get("/single/:id", verifyToken,getGig)
+router.get("/all",allGig)
+router.get("/single/:id", getGig)
 router.post("/create", verifyToken,createGig)
-router.delete("/:id", verifyToken,deleteGig)
+router.delete("delete/:id", verifyToken,deleteGig)
 
 module.exports = router

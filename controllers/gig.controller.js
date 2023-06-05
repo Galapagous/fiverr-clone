@@ -2,8 +2,9 @@ const Gigs_model = require("../Model/Gigs_model")
 const { all } = require("../Route/user.route")
 
 const getGig = async (req,res,next)=>{
+  console.log({id: req.params.id})
   try{
-    const gig =await Gigs_model.findById(req.params.id)
+    const gig = await Gigs_model.findById(req.params.id)
     if (!gig){
       return next(res.status(401).json("gig not found"))
     }
@@ -13,7 +14,8 @@ const getGig = async (req,res,next)=>{
   }
 }
 const createGig = async (req, res, next)=>{
-  if (!req.is_seller) return next(res.status(400).json("Only sellers can create a gig"))
+  console.log({req: req})
+  if (!req.isSeller) return next(res.status(400).json("Only sellers can create a gig"))
   const theGig = new Gigs_model({
     userId: req.userId,
     ...req.body
@@ -28,14 +30,13 @@ const createGig = async (req, res, next)=>{
 const allGig = async (req, res, next)=>{
   const q = req.query
   const filters = {
-    ...(q.userId && {cat: q.userId}),
+    ...(q.userId && {userId: q.userId}),
     ...(q.cat && {cat: q.cat}),
     ...((q.min || q.max) && {price: {...(q.min && {$gt: q.min}), ...(q.max && {$lt: q.max})}}),
     ...(q.search && {title: { $regex: q.search, $options: "i" }})
   }
   try{
-    const allGig = await Gigs_model.find(filters)
-    if (!allGig)return next(res.status(401).json("No gigs yet"))
+    const allGig = await Gigs_model.find(filters).sort({[q.sort]:-1});
     res.status(200).json(allGig)
   }catch(error){
     console.log(error)

@@ -11,9 +11,14 @@ const deleteUser =async (req, res, next) => {
   }
 
 const allUser = async(req,res)=>{
-  console.log("recieved")
   const User = await User_model.find()
   if (!User) return res.status(401).json("User Not Found")
   return res.status(200).json(User)
 }
-module.exports = {deleteUser, allUser}
+
+const singleUser = async(req,res)=>{
+  const User = await User_model.findById(req.params.id)
+  if(!User) return res.status(401).json('Usr Not Found')
+  return res.status(200).json(User)
+}
+module.exports = {deleteUser, allUser, singleUser}

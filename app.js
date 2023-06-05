@@ -32,6 +32,7 @@ const connection = async()=>{
 app.use("/api/user", UserRoute)
 app.use("/api/auth", AuthRoute)
 app.use("/api/gig", GigRoute)
+app.use("/api/review", ReviewRoute)
 // app.use("/api/conversation", ConversationRoute)
 
 app.use((err,req,res,next)=>{
